@@ -70,6 +70,12 @@ Exemplo de mensagem JSON:
 ## 7. Script em Python
 
 A pasta `pc/` contém o script responsável pela leitura serial e envio ao InfluxDB.
+Nesta fase, o Docker deve estar ativado. Ao rodar o comando docker compose up -d, algo como:
+
+Grafana Done
+InfluxDB Done
+
+Deve ser exibido no terminal.
 
 ```bash
 cd pc
