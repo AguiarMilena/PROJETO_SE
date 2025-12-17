@@ -1,0 +1,156 @@
+{
+  "annotations": {
+    "list": []
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": null,
+  "iteration": 1700000000000,
+  "panels": [
+    {
+      "type": "timeseries",
+      "title": "Pitch (°)",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "InfluxDB"
+      },
+      "targets": [
+        {
+          "query": "from(bucket: \"mesa_bucket\")\n  |> range(start: -10s)\n  |> filter(fn: (r) => r._measurement == \"mesa\")\n  |> filter(fn: (r) => r._field == \"pitch\")",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "degree",
+          "color": {
+            "mode": "palette-classic"
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 12,
+        "h": 8
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "Roll (°)",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "InfluxDB"
+      },
+      "targets": [
+        {
+          "query": "from(bucket: \"mesa_bucket\")\n  |> range(start: -10s)\n  |> filter(fn: (r) => r._measurement == \"mesa\")\n  |> filter(fn: (r) => r._field == \"roll\")",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "degree",
+          "color": {
+            "mode": "palette-classic"
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 0,
+        "w": 12,
+        "h": 8
+      }
+    },
+    {
+      "type": "gauge",
+      "title": "Pitch (°)",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "InfluxDB"
+      },
+      "targets": [
+        {
+          "query": "from(bucket: \"mesa_bucket\")\n  |> range(start: -5s)\n  |> filter(fn: (r) => r._measurement == \"mesa\")\n  |> filter(fn: (r) => r._field == \"pitch\")\n  |> last()",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "min": -90,
+          "max": 90,
+          "unit": "degree",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": -20 },
+              { "color": "yellow", "value": 20 },
+              { "color": "red", "value": 45 }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 8,
+        "w": 12,
+        "h": 6
+      }
+    },
+    {
+      "type": "gauge",
+      "title": "Roll (°)",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "InfluxDB"
+      },
+      "targets": [
+        {
+          "query": "from(bucket: \"mesa_bucket\")\n  |> range(start: -5s)\n  |> filter(fn: (r) => r._measurement == \"mesa\")\n  |> filter(fn: (r) => r._field == \"roll\")\n  |> last()",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "min": -90,
+          "max": 90,
+          "unit": "degree",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": -20 },
+              { "color": "yellow", "value": 20 },
+              { "color": "red", "value": 45 }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 8,
+        "w": 12,
+        "h": 6
+      }
+    }
+  ],
+  "schemaVersion": 38,
+  "style": "dark",
+  "tags": ["mesa", "mpu6050"],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-30s",
+    "to": "now"
+  },
+  "timezone": "browser",
+  "title": "Mesa Inercial – Pitch & Roll",
+  "uid": "mesa-dashboard",
+  "version": 1
+}
